@@ -90,5 +90,4 @@ void check_type(long long card_number)
     {
         printf("INVALID\n");
     }
-
 }
