@@ -1,71 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
-
-typedef uint8_t BYTE;
 
 int main(int argc, char *argv[])
 {
-    //check arguments
+
+    // Checking if the user entered a correct input:
     if (argc != 2)
     {
-        printf("Usage: ./recover image\n");
+        printf("You're not using it correctly!\n");
         return 1;
     }
-    else
+
+    // Opening the file in argv[1]
+    FILE *f = fopen(argv[1], "r");
+
+    // Validating that there's a file in argv[1]
+    if (f == NULL)
     {
-        return 0;
+        printf("File hasn't found\n");
+        return 1;
     }
 
-    FILE *infile = fopen(argv[1], "r");
-
-    //check if could not open the file
-    if (infile == NULL)
-    {
-        printf("Error: can not oper %s file.\n", argv[1]);
-        return 2;
-    }
-    else
-    {
-        return 0;
-    }
-
-    //initialize variables
-    int file_index = 0;
-    FILE *outfile;
-    char jpeg_name[8];
-    const int BLOCK_SIZE = 512;
-
-    //buffer for reading data
-    BYTE buf[BLOCK_SIZE];
+    //initializing variables
+    unsigned char bytes[512];
+    int counter = 0;
+    FILE *img = NULL;
 
     //go though card file untill there aren't any blocks left
-    while (fread(buf, BLOCK_SIZE, 1, infile) == 1)
+    while (fread(bytes, 512, 1, f) == 1)
     {
         //check for begining of a jpeg image
-        if (buf[0] == 0xff && buf[1] == 0xd8 && buf[2] == 0xff && (buf[3] & 0xf0) == 0xe0)
+        if (bytes[0] == 0xff && bytes[1] == 0xd8 && bytes[2] == 0xff && (bytes[3] & 0xf0) == 0xe0)
         {
-            if (file_index > 0)
+            if (img != NULL)
             {
-                fclose(outfile);
+                fclose(img);
             }
-            //close opened image unless it's the first
-            if (file_index == 0)
+
+            char filename[8];
+
+            sprintf(filename, "%03i.jpg", counter);
+            img = fopen(filename, "w");
+            if (img == NULL)
             {
-                sprintf(jpeg_name, "%03i.jpg", file_index);
-                outfile = fopen(jpeg_name, "w");
-                file_index++;
+                printf("Couldn't open file\n");
+                return 1;
             }
+            counter++;
         }
-        else if (file_index > 0)
+
+        if (img != NULL)
         {
-            fwrite(&buf, BLOCK_SIZE, 1, outfile);
+            fwrite(bytes, 512, 1, img);
         }
     }
 
-    //close all opened files
-    fclose(infile);
-    fclose(outfile);
-
-    return 0;
+    if (img != NULL)
+    {
+        fclose(img);
+    }
+    fclose(f);
 }
