@@ -1,3 +1,39 @@
+/* There’s another kind of voting system known as a ranked-choice voting system. In a ranked-choice system, voters can vote for 
+more than one candidate. Instead of just voting for their top choice, they can rank the candidates in order of preference.
+Here, each voter, in addition to specifying their first preference candidate, has also indicated their second and third choices. 
+And now, what was previously a tied election could now have a winner.
+Ranked choice voting can also solve yet another potential drawback of plurality voting.
+The Tideman voting method (also known as “ranked pairs”) is a ranked-choice voting method that’s guaranteed to produce the Condorcet 
+winner of the election if one exists. Generally speaking, the Tideman method works by constructing a “graph” of candidates, where 
+an arrow (i.e. edge) from candidate A to candidate B indicates that candidate A wins against candidate B in a head-to-head matchup.
+Looking at this graph, the Tideman method says the winner of the election should be the “source” of the graph 
+(i.e. the candidate that has no arrow pointing at them).
+Put more formally, the Tideman voting method consists of three parts:
+- Tally: Once all of the voters have indicated all of their preferences, determine, for each pair of candidates, who the preferred 
+candidate is and by what margin they are preferred.
+- Sort: Sort the pairs of candidates in decreasing order of strength of victory, where strength of victory is defined to be the number 
+of voters who prefer the preferred candidate.
+- Lock: Starting with the strongest pair, go through the pairs of candidates in order and “lock in” each pair to the candidate graph, 
+so long as locking in that pair does not create a cycle in the graph.
+Once the graph is complete, the source of the graph (the one with no edges pointing towards it) is the winner!
+
+Complete the implementation of tideman.c in such a way that it simulates a Tideman election.
+- vote - The function takes arguments rank, name, and ranks. If name is a match for the name of a valid candidate, then you should update the 
+ranks array to indicate that the voter has the candidate as their rank preference (where 0 is the first preference, 1 is the second preference, etc.)
+Recall that ranks[i] here represents the user’s ith preference. The function should return true if the rank was successfully recorded, and false otherwise 
+(if, for instance, name is not the name of one of the candidates). You may assume that no two candidates will have the same name.
+- record_preferences - The function is called once for each voter, and takes as argument the ranks array, (recall that ranks[i] is the voter’s ith preference, 
+where ranks[0] is the first preference). The function should update the global preferences array to add the current voter’s preferences. 
+Recall that preferences[i][j] should represent the number of voters who prefer candidate i over candidate j. 
+You may assume that every voter will rank each of the candidates.
+- add_pairs - The function should add all pairs of candidates where one candidate is preferred to the pairs array. A pair of candidates who are tied 
+(one is not preferred over the other) should not be added to the array. The function should update the global variable pair_count to be the number 
+of pairs of candidates. (The pairs should thus all be stored between pairs[0] and pairs[pair_count - 1], inclusive).
+- sort_pairs - The function should sort the pairs array in decreasing order of strength of victory, where strength of victory is defined to be the 
+number of voters who prefer the preferred candidate. If multiple pairs have the same strength of victory, you may assume that the order does not matter.
+- lock_pairs - The function should create the locked graph, adding all edges in decreasing order of victory strength so long as the edge would not create a cycle.
+- print_winner function - The function should print out the name of the candidate who is the source of the graph. */
+
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
