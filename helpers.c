@@ -1,3 +1,33 @@
+/* Perhaps the simplest way to represent an image is with a grid of pixels (i.e., dots), each of which can be of a different color. 
+For black-and-white images, we thus need 1 bit per pixel, as 0 could represent black and 1 could represent white.
+In this sense, then, is an image just a bitmap (i.e., a map of bits). For more colorful images, you simply need more bits per pixel. 
+A file format (like BMP, JPEG, or PNG) that supports “24-bit color” uses 24 bits per pixel. (BMP actually supports 1-, 4-, 8-, 16-, 24-, and 32-bit color.)
+A 24-bit BMP uses 8 bits to signify the amount of red in a pixel’s color, 8 bits to signify the amount of green in a pixel’s color, 
+and 8 bits to signify the amount of blue in a pixel’s color. If you’ve ever heard of RGB color, well, there you have it: red, green, blue.
+If the R, G, and B values of some pixel in a BMP are, say, 0xff, 0x00, and 0x00 in hexadecimal, that pixel is purely red, as 0xff 
+(otherwise known as 255 in decimal) implies “a lot of red,” while 0x00 and 0x00 imply “no green” and “no blue,” respectively.
+
+What does it even mean to filter an image? You can think of filtering an image as taking the pixels of some original image, 
+and modifying each pixel in such a way that a particular effect is apparent in the resulting image.
+Implement the functions in helpers.c such that a user can apply grayscale, reflection, blur, or edge detection filters to their images.
+- grayscale function should take an image and turn it into a black-and-white version of the same image. To convert a pixel to grayscale, 
+we can take the average of the red, green, and blue values to determine what shade of grey to make the new pixel. If you apply that to each pixel 
+in the image, the result will be an image converted to grayscale.
+- reflect function should take an image and reflect it horizontally. Some filters might also move pixels around. Reflecting an image, for example, 
+is a filter where the resulting image is what you would get by placing the original image in front of a mirror. So any pixels on the left side of 
+the image should end up on the right, and vice versa.
+- blur function should take an image and turn it into a box-blurred version of the same image. There are a number of ways to create the effect 
+of blurring or softening an image. For this problem, we’ll use the “box blur,” which works by taking each pixel and, for each color value, 
+giving it a new value by averaging the color values of neighboring pixels. The new value of each pixel would be the average of the values of 
+all of the pixels that are within 1 row and column of the original pixel (forming a 3x3 box).
+- The edges function should take an image and highlight the edges between objects, according to the Sobel operator. In artificial intelligence 
+algorithms for image processing, it is often useful to detect edges in an image: lines in the image that create a boundary between one object and another. 
+One way to achieve this effect is by applying the Sobel operator to the image.nLike image blurring, edge detection also works by taking each pixel, 
+and modifying it based on the 3x3 grid of pixels that surrounds that pixel. But instead of just taking the average of the nine pixels, the Sobel operator 
+computes the new value of each pixel by taking a weighted sum of the values for the surrounding pixels. And since edges between objects could take 
+place in both a vertical and a horizontal direction, you’ll actually compute two weighted sums: one for detecting edges in the x direction, and one 
+for detecting edges in the y direction. In particular, you’ll use the following two “kernels”: Sobel kernels - google it */
+
 #include "helpers.h"
 #include <math.h>
 
