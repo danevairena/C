@@ -16,29 +16,20 @@ Once a legitimate guess has been obtained, it can be returned.
 (which we #defined as WRONG)—and a per-word basis, to help us detect when we’ve potentially triggered the end of the game by winning. 
 We’ll use the individual letter scores when we color-code the printing. In order to store those scores, we need an array, which we’ve called status. 
 At the start of the game, with no guesses having taken place, it should contain all 0s.
-This is another good place to stop and test your code, particularly as it pertains to item 3, above! You’ll notice that at this point, when you finally enter a legitimate guess (that is to say, one that’s the correct length), your program will likely look something like the below:
-
-Input a 5-letter word: computer
-Input a 5-letter word: games
-Guess 1:
-Input a 5-letter word:
-That’s normal, though! Implementing print_word is TODO number 6, so we should not expect the program to do any processing of that guess at this time. Of course, you can always add additional printf calls (just make sure to remove them before you submit) as part of your debugging strategy!
-
-The fifth TODO is definitely the largest and probably most challenging. Inside of the check_word function, it’s up to you to compare each of the letters of the guess with each of the letters of the choice (which, recall, is the “secret word” for this game), and assign scores. If the letters match, award EXACT (2) points and break out of the loop—there’s no need to continue looping if you already determined the letter is in the right spot. Technically, if that letter appears in the word twice, this could result in a bit of a bug, but fixing that bug overcomplicates this problem a bit more than we want to now, so we’re going to accept that as a feature of our version! If you find that the letter is in the word but not in the right spot, award CLOSE (1) points but don’t break! After all, that letter might later show up in the right spot in the choice word, and if we break too soon, the user would never know it! You don’t actually need to explicitly set WRONG (0) points here, since you handled that early in Step 4. Ultimately though, you should also be summing up the total score of the word when you know it, because that’s what this function is supposed to ultimately return. Again, don’t be afraid to use debug50 and/or printfs as necessary in order to help you figure out what the values of different variables are at this point – until you implement print_word, below, the program won’t be offering you much in the way of a visual checkpoint!
-For the sixth TODO you will complete the implementation of print_word. That function should look through the values you populated the status array with and print out, character by character, each letter of the guess with the correct color code. You may have noticed some (scary-looking!) #defines at the top of the file wherein we provide a simpler way of representing what’s called an ANSI color code, which is basically a command to change the font color of the terminal. You don’t need to worry about how to implement those four values (GREEN, YELLOW, RED, and RESET, the latter of which simply returns to the terminal’s default font) or exactly what they mean; instead, you can just use them (the power of abstraction!). Note as well that we provide an example in the distribution code up where we print some green text and then reset the color, as part of the game’s introduction. Accordingly, you should feel free to use the below line of code for inspiration as to how you might try to toggle colors:
+5. The fifth TODO is definitely the largest and probably most challenging. Inside of the check_word function, it’s up to you to compare each of the letters 
+of the guess with each of the letters of the choice (which, recall, is the “secret word” for this game), and assign scores. If the letters match, 
+award EXACT (2) points and break out of the loop—there’s no need to continue looping if you already determined the letter is in the right spot. 
+Technically, if that letter appears in the word twice, this could result in a bit of a bug, but fixing that bug overcomplicates this problem a bit more 
+than we want to now, so we’re going to accept that as a feature of our version! If you find that the letter is in the word but not in the right spot, 
+award CLOSE (1) points but don’t break! After all, that letter might later show up in the right spot in the choice word, and if we break too soon, 
+the user would never know it! You don’t actually need to explicitly set WRONG (0) points here, since you handled that early in Step 4. Ultimately though, 
+you should also be summing up the total score of the word when you know it, because that’s what this function is supposed to ultimately return. 
+6. For the sixth TODO you will complete the implementation of print_word. That function should look through the values you populated the status array with and print out, character by character, each letter of the guess with the correct color code. You may have noticed some (scary-looking!) #defines at the top of the file wherein we provide a simpler way of representing what’s called an ANSI color code, which is basically a command to change the font color of the terminal. You don’t need to worry about how to implement those four values (GREEN, YELLOW, RED, and RESET, the latter of which simply returns to the terminal’s default font) or exactly what they mean; instead, you can just use them (the power of abstraction!). Note as well that we provide an example in the distribution code up where we print some green text and then reset the color, as part of the game’s introduction. Accordingly, you should feel free to use the below line of code for inspiration as to how you might try to toggle colors:
 printf(GREEN"This is WORDLE50"RESET"\n");
-Of course, unlike our example, you probably don’t want to print a newline after each character of the word (instead, you just want one newline at the end, also resetting the font color!), lest it end up looking like the below:
-
-
-Input a 5-letter word: games
-Guess 1: g
-a
-m
-e
-s
-Input a 5-letter word:
-Finally, the seventh TODO is just a bit of tidying up before the program terminates. Whether the main for loop has ended normally, by the user running out of guesses, or because we broke out of it by getting the word exactly right, it’s time to report to the user on the game’s outcome. If the user did win the game, a simple You won! suffices to print here. Otherwise, you should print a message telling the user what the target word was, so they know the game was being honest with them (and so that you have a means to debug if you look back and realize your code was providing improper clues along the way!)
-*/
+7. Finally, the seventh TODO is just a bit of tidying up before the program terminates. Whether the main for loop has ended normally, by the user running 
+out of guesses, or because we broke out of it by getting the word exactly right, it’s time to report to the user on the game’s outcome. If the user did 
+win the game, a simple You won! suffices to print here. Otherwise, you should print a message telling the user what the target word was, so they know the 
+game was being honest with them. */
 
 #include <cs50.h>
 #include <stdlib.h>
