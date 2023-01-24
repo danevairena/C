@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            var clicked = false;
+            var clicked1 = false;
+            function wrongChoice(button){
+                if (clicked == false){
+                    button.style.backgroundColor = 'red';
+                    var target1 = document.getElementById("multiple");
+                    target1.innerHTML += "<p>Incorrect</p>";
+                    clicked = true;
+                }
+            }
+
+            function correctChoice(button){
+                if (clicked == false){
+                    button.style.backgroundColor = 'green';
+                    var target1 = document.getElementById("multiple");
+                    target1.innerHTML += "<p>Correct!</p>";
+                    clicked = true;
+                }
+            }
+
+            function checkAnswer(button) {
+                if (clicked1 == false){
+                    // Selecting the input element and get its value
+                    let inputVal = document.getElementById("in").value;
+                    let correctAnswer = "Five";
+                    let checkButton = document.querySelector('#check');
+                    if (inputVal == correctAnswer){
+                        button.style.backgroundColor = 'green';
+                        var target2 = document.getElementById("freeresp");
+                        target2.innerHTML += "<p>Correct!</p>";
+                    }
+                    else {
+                        button.style.backgroundColor = 'red';
+                        var target2 = document.getElementById("freeresp");
+                        target2.innerHTML += "<p>Incorrect</p>";
+                    }
+                    clicked1 = true;
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function(){
+                //first question
+                let jenny = document.querySelector('#jenny');
+                jenny.addEventListener('click', function() {
+                    correctChoice(jenny);
+                });
+                let penny = document.querySelector('#penny');
+                penny.addEventListener('click', function() {
+                    wrongChoice(penny);
+                });
+                let donny = document.querySelector('#donny');
+                donny.addEventListener('click', function() {
+                    wrongChoice(donny);
+                });
+                let monny = document.querySelector('#monny');
+                monny.addEventListener('click', function() {
+                    wrongChoice(monny);
+                });
+
+                //second question
+                let check = document.querySelector('#check');
+                check.addEventListener('click', function() {
+                    checkAnswer(check);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3 id="multiple">What is a female donkey called?</h3>
+                <button id="donny" class = "button, input">A Donny</button>
+                <button id="penny" class = "button, input">A Penny</button>
+                <button id="jenny" class = "button, input">A Jenny</button>
+                <button id="monny" class = "button, input">A Monny</button>
+            </div>
+
+            <div id="free" class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3 id="freeresp">How many eyes does a bee have?</h3>
+                <input id="in" autocomplete="off" type="text">
+                <button id="check" class = "button, input">Check Answer</button>
+            </div>
+        </div>
+    </body>
+</html>
