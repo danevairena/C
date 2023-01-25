@@ -14,6 +14,6 @@
   - You should use a button to let the user confirm their answer.<br>
   - Using JavaScript, add logic so that the text field changes color when a user confirms their answer.<br>
   - If the user types an incorrect answer and presses the confirmation button, the text field should turn red and text should appear beneath the question that says “Incorrect”.<br>
-  - If the user types the correct answer and presses the confirmation button, the input field should turn green and text should appear beneath the question that says “Correct!”.
+  - If the user types the correct answer and presses the confirmation button, the input field should turn green and text should appear beneath the question that says “Correct!”.<br>
 </p>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/lab8/2023-01-25.png"></img>
