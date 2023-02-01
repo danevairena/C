@@ -12,11 +12,11 @@ See Bootstrap’s documentation to get started. In particular, you might find so
 <p><h4>Have at least one stylesheet file of your own creation, styles.css, which uses at least five (5) different CSS selectors</h4></p>
 
 <p><h4>Integrate one or more features of JavaScript into your site to make your site more interactive.<br></h4></p>
-Home
+<h2>Home</h2>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/1.png"></img>
-About Me
+<h2>About Me</h2>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/2.png"></img>
-Education
+<h2>Education</h2>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/3.png"></img>
-Skills
+<h2>Skills</h2>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/4.png"></img>
