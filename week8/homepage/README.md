@@ -3,7 +3,7 @@
 <p><h4>Contain at least four different .html pages, at least one of which is index.html (the main page of your website), <br>
 and it should be possible to get from any page on your website to any other page by following one or more hyperlinks.</h4></p>
 
-<p><h4>Use at least ten (10) distinct HTML tags besides <html>, <head>, <body>, and <title>. </h4>></p>
+<p><h4>Use at least ten (10) distinct HTML tags</h4>></p>
 
 <p><h4>Integrate one or more features from Bootstrap into your site.</h4>
 Bootstrap is a popular library (that comes with lots of CSS classes and more) via which you can beautify your site. <br>
