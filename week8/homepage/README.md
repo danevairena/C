@@ -14,6 +14,9 @@ See Bootstrap’s documentation to get started. In particular, you might find so
 <p><h4>Integrate one or more features of JavaScript into your site to make your site more interactive.<br></h4></p>
 
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/1.png"></img>
+<br>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/2.png"></img>
+<br>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/3.png"></img>
+<br>
 <img height="100%" width="100%" align="center" src="https://cdn.githubraw.com/danevairena/CS50x/main/week8/homepage/4.png"></img>
